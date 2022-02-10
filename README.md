@@ -9,3 +9,4 @@
 , [GPL](https://github.com/matthieua/WOW#open-source-license)
 
 * Animate.css, https://github.com/daneden/animate.css, (C) 2016 Daniel Eden, [MIT](https://github.com/daneden/animate.css/blob/master/LICENSE)
+* Phantom, https://github.com/jamigibbs/phantom, (C) Jami Gibbs
