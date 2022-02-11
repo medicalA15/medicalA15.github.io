@@ -92,4 +92,4 @@ admin_name: 'Rakesh Senthilvelan and Madeline Tjoa'
 enable_nav: true
 nav_item:
   - { url: '/', text: 'Home' }
-  - { url: '/about', text: 'About' }
+  - { url: '/about', text: 'Quarter 1 Recap' }
