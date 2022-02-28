@@ -1,6 +1,6 @@
 ---
 layout: inner
-title: Quarter 1 Recap
+title: Adversarial Defenses in Healthcare
 permalink: /about/
 ---
 ## Introduction
@@ -22,14 +22,7 @@ When it comes to the adversarial attacks, they can affect all sections of the mo
 Projected gradient descent allows us to perform onto the loss function expressed by the following equation:
 
 This allows us to identify the optimal perturbation, which means the approximate solution, to maximize the above to better train for adversarial situations. The process we use when we implement this in the code is to start off by loading in the White Box and Black Box models and developing a method for the PGD attacks. In the case of the paper we are replicating, the PGD attacks are created from a library called Cleverhans and utilizing parameters of 20 iterations with the hyperparameter ϵ = 0.02. Once this is run, we are able to then get the results of the model through accuracy, AUC score, and Average Confidence. From here, we are able to evaluate the model on a specified label through clean and adversarial data using the batch_eval method from the Cleverhans library. Once this is done, we look into the L2 norm of the perturbations, which gives us the vector distance of the perturbation from the origin of the vector space. Given these L2 norms, we are then able to identify which images are the most perturbed, both on the healthy cases and the sick cases. Once this is complete, we can visualize our model and its performance by running it on our data and producing graphs and charts related to confidence, ROC, sensitivity, and specificity.  
-### Practice: Patch Attacks 
-The adversarial research paper performs an example of multiple patch attacks for three medical domains (same as mentioned above): CXR, Melanoma, and Skin Patches. The overall idea of this test is to trick a model into outputting the wrong label for detection of unusual conditions found in an image that is fed in. We do this through attaching specifically generated patches to the images using iterative approaches. 
 
-We start by creating two resnet models. One model will be used for us to perform an adversarial attack, while the other model will be used as the model which we attempt to attack. 
-
-After this, we perform a white box attack, in which we assume that we have access to all of the parameters of our second model and obtain a fine tuned image containing our adversarial patch. We create patches that both output 0 (negative detection) and 1 (positive detection). 
-
-The research paper also details the performance of a black box attack, in which we assume that we don’t have access to any of our second model’s parameters, and are left to create adversarial images containing patches with the limited information we have. 
 
 ### Theory: Adversarial Attacks 
 
@@ -50,7 +43,7 @@ The process of adversarial training largely revolves around the idea that creati
 
 Beyond this, it is common to randomize over the starting positions in projected gradient descent in order to avoid issues when it comes to the ​​procedure learning loss surface. During our replication of the code for this report, we decided to utilize the pre-trained models given to us in order to offer more consistent results and performance in the later parts of our research, which we have cited in our Github repository.     
 
-### Future Exploration: Robust Training
+### Robust Training
 Robust training also finds use in convex relaxation methods, also known as providing the provable upper bounds on objectives. If we are able to add upper bounds to check the robustness of the model against adversarial examples, we can use the upper bound to help us make a model that minimizes losses based on that bound. 
 
 Robust training is focused around the idea of minimizing loss based on an upper bound. In this case, training in this case will allow for the discovery of meaningful bounds. In order to do this, we must “the interval bounds to upper bound the cross entropy loss of a classifier, and then minimize this upper bound” (Adversarial Robustness - Theory and Practice). We believe that in future exploration of adversarial attacks in healthcare deep learning systems, a deeper look into robust training can provide more insight into how we may better combat adversarial examples in real world settings. 
