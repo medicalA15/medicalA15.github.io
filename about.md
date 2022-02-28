@@ -45,5 +45,13 @@ Robust training is focused around the idea of minimizing loss based on an upper 
 The Fast Gradient Sign Method is one of the methods that we will experiment with using for adversarial robust training. Fast gradient sign method is an adversarial method that utilizes the gradients of a neural network’s loss in order to affect the input image in order to maximize the loss value. Training around this would allow the neural network to account for a seemingly worst case scenario where losses are maximized, allowing the model to better protect against adversarial attacks that are imperceptible to humans. The Fast Gradient Sign Method for adversarial attacks is represented by the equation: 
 
 ![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/FGSM.png?raw=true)
+*FGSM equation, Tensorflow Documentation*
+
+### Projected Gradient Descent
+
+We explore Projected Gradient Descent as a standard for traditional adversarial training in order to compare the effectiveness of the Fast Gradient Sign Method results. Projected Gradient Descent (PGD) is known to be effective in training for adversarial attacks, however can be computationally expensive to run. Its goal is to solve the inner maximization problem over a threat model, where threat model refers to the type of attack to be performed on a model (ie white box attack, black box attack, targeted vs untargeted attack). 
+
+![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/PGD.png?raw=true)
+*PGD pseudocode (Wang et al)*
 
  
