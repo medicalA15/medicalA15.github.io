@@ -44,6 +44,6 @@ Robust training is focused around the idea of minimizing loss based on an upper 
 
 The Fast Gradient Sign Method is one of the methods that we will experiment with using for adversarial robust training. Fast gradient sign method is an adversarial method that utilizes the gradients of a neural network’s loss in order to affect the input image in order to maximize the loss value. Training around this would allow the neural network to account for a seemingly worst case scenario where losses are maximized, allowing the model to better protect against adversarial attacks that are imperceptible to humans. The Fast Gradient Sign Method for adversarial attacks is represented by the equation: 
 
-![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/FGSM.png)
+![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/FGSM.png?raw=true)
 
  
