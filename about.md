@@ -16,14 +16,6 @@ An area where deep learning systems find themselves particularly at risk for adv
 In the case of these adversarial attacks here, we wanted to get a further understanding of what parts of the algorithm these attacks tend to focus on. The understanding is that these deep learning algorithms are built using neural networks, particularly convolutional neural networks as is usually the case when working with image inputs (University of Michigan). Convolutional neural networks, or CNNs for short, work through the usage of layers that handle functionalities such as decreasing the computational power required to process the data through dimensionality reduction, extracting dominant features, and flattening in order to produce the proper classification output (Saha). In the case of this replication, we have used the same pre-trained ImageNet models with tuned parameters for classification and pre-trained ResNet-50 models to build our networks as the source material.
 When it comes to the adversarial attacks, they can affect all sections of the model pipeline. Training data can be affected by data breaches and bias, training can be affected by improper training, the model can be affected by privacy breaches, deployment by system disruption and shifts on real-world data, and results by model stealing. In the scope of this paper, we will implement human-imperceptible attacks through projected gradient descent and patch attacks, both of which will be covered in the Methods section of this report. 
 
-## Methods
-
-### Practice: PGD Attacks 
-Projected gradient descent allows us to perform onto the loss function expressed by the following equation:
-
-This allows us to identify the optimal perturbation, which means the approximate solution, to maximize the above to better train for adversarial situations. The process we use when we implement this in the code is to start off by loading in the White Box and Black Box models and developing a method for the PGD attacks. In the case of the paper we are replicating, the PGD attacks are created from a library called Cleverhans and utilizing parameters of 20 iterations with the hyperparameter ϵ = 0.02. Once this is run, we are able to then get the results of the model through accuracy, AUC score, and Average Confidence. From here, we are able to evaluate the model on a specified label through clean and adversarial data using the batch_eval method from the Cleverhans library. Once this is done, we look into the L2 norm of the perturbations, which gives us the vector distance of the perturbation from the origin of the vector space. Given these L2 norms, we are then able to identify which images are the most perturbed, both on the healthy cases and the sick cases. Once this is complete, we can visualize our model and its performance by running it on our data and producing graphs and charts related to confidence, ROC, sensitivity, and specificity.  
-
-
 ### Theory: Adversarial Attacks 
 
 We now explore adversarial attacks and their different types. Examples of adversarial attack strategies include utilizing the Fast Gradient Descent Method and Projected Gradient Descent to Lower bound the inner maximization problem. 
@@ -34,8 +26,6 @@ We notice that h(theta) represents our model, while x is the data we feed into t
 These attacks are considered 'untargeted’ as they aim to simply ensure the data fed is misclassified. For a targeted attack, we use the same strategies as specified for untargeted attacks, except in this case we misclassify our data to a specific classification. 
 
 The difference between the two attacks is that a targeted attack must not only maximize the loss of the real data label, but also minimize the loss for our target label. 
-
-Image from adversarial-ml-tutorial.org, Chapter 3
 	
 ### Adversarial Training
 
@@ -48,4 +38,12 @@ Robust training also finds use in convex relaxation methods, also known as provi
 
 Robust training is focused around the idea of minimizing loss based on an upper bound. In this case, training in this case will allow for the discovery of meaningful bounds. In order to do this, we must “the interval bounds to upper bound the cross entropy loss of a classifier, and then minimize this upper bound” (Adversarial Robustness - Theory and Practice). We believe that in future exploration of adversarial attacks in healthcare deep learning systems, a deeper look into robust training can provide more insight into how we may better combat adversarial examples in real world settings. 
 
+## Methods
 
+### Fast Gradient Sign Method
+
+The Fast Gradient Sign Method is one of the methods that we will experiment with using for adversarial robust training. Fast gradient sign method is an adversarial method that utilizes the gradients of a neural network’s loss in order to affect the input image in order to maximize the loss value. Training around this would allow the neural network to account for a seemingly worst case scenario where losses are maximized, allowing the model to better protect against adversarial attacks that are imperceptible to humans. The Fast Gradient Sign Method for adversarial attacks is represented by the equation: 
+
+![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/FGSM.png)
+
+ 
