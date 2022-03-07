@@ -54,6 +54,7 @@ We explore Projected Gradient Descent as a standard for traditional adversarial 
 ![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/PGD.png?raw=true)
 *PGD pseudocode (Wang et al)*
 
+
  ## Results (WORK IN PROGRESS)
 
  ### Diabetic Retinopathy
