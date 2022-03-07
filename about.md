@@ -54,12 +54,11 @@ We explore Projected Gradient Descent as a standard for traditional adversarial 
 ![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/PGD.png?raw=true)
 *PGD pseudocode (Wang et al)*
 
+## Results (WORK IN PROGRESS)
 
- ## Results (WORK IN PROGRESS)
+### Diabetic Retinopathy
 
- ### Diabetic Retinopathy
-
- For the purpose of recording our results for diabetic retinopathy, we ran the same FGSM and PGD training models with changing epsilon values. In this case, epsilon represents the coefficient of the loss functions as seen in the PGD and FGSM equations. Diabetic retinopathy represented our largest dataset, coming in with 10644 images. As a result, our code had to be optimized to run effectively within the computing resources available to us while also taking into account this large dataset. As a result, this section was run on algorithms with epsilons 0, 2, and 5 with attack epsilons of 0, 5, and 8. Epsilon 0 on the training algorithm indicates that the algorithm does not have robust training while higher epsilons indicate higher levels of robust training. When looking at the attack epsilon, an epsilon of 0 indicates no adversarial attack while higher epsilons indicate stronger attacks. First, we looked into FGSM as it is a faster algorithm than PGD. We were able to gauge the following results from those runs. 
+For the purpose of recording our results for diabetic retinopathy, we ran the same FGSM and PGD training models with changing epsilon values. In this case, epsilon represents the coefficient of the loss functions as seen in the PGD and FGSM equations. Diabetic retinopathy represented our largest dataset, coming in with 10644 images. As a result, our code had to be optimized to run effectively within the computing resources available to us while also taking into account this large dataset. As a result, this section was run on algorithms with epsilons 0, 2, and 5 with attack epsilons of 0, 5, and 8. Epsilon 0 on the training algorithm indicates that the algorithm does not have robust training while higher epsilons indicate higher levels of robust training. When looking at the attack epsilon, an epsilon of 0 indicates no adversarial attack while higher epsilons indicate stronger attacks. First, we looked into FGSM as it is a faster algorithm than PGD. We were able to gauge the following results from those runs. 
 
 
 ## Conclusion (WORK IN PROGRESS)
