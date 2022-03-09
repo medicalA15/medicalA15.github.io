@@ -13,8 +13,10 @@ We will analyze ways in which models can be trained to overlook adversarial exam
 # Background
 
 An area where deep learning systems find themselves particularly at risk for adversarial attacks is within the healthcare space. Healthcare is fundamentally a sensitive space, with patient data being highly protected and every decision made having a lasting impact on the health of the people that are involved. As technology advances within this sector, deep learning algorithms are being used for new tasks, including diagnosing patients with conditions based on viewing medical images such as photographs, x-rays, and other diagnostic scans. In cases where adversarial examples attack these deep learning models, the possibilities for misdiagnosis and subsequent fraud and bodily harm begin to grow. We want to determine how to develop robust solutions to protect this sensitive data and model predictions against such adversarial examples. 
+
 In the case of these adversarial attacks here, we wanted to get a further understanding of what parts of the algorithm these attacks tend to focus on. The understanding is that these deep learning algorithms are built using neural networks, particularly convolutional neural networks as is usually the case when working with image inputs (University of Michigan). Convolutional neural networks, or CNNs for short, work through the usage of layers that handle functionalities such as decreasing the computational power required to process the data through dimensionality reduction, extracting dominant features, and flattening in order to produce the proper classification output (Saha). In the case of this replication, we have used the same pre-trained ImageNet models with tuned parameters for classification and pre-trained ResNet-50 models to build our networks as the source material.
-When it comes to the adversarial attacks, they can affect all sections of the model pipeline. Training data can be affected by data breaches and bias, training can be affected by improper training, the model can be affected by privacy breaches, deployment by system disruption and shifts on real-world data, and results by model stealing. In the scope of this paper, we will implement human-imperceptible attacks through projected gradient descent and patch attacks, both of which will be covered in the Methods section of this report. 
+
+When it comes to the adversarial attacks, they can affect all sections of the model pipeline. Training data can be affected by data breaches and bias,training can be affected by improper training, the model can be affected by privacy breaches, deployment by system disruption and shifts on real-world data, and results by model stealing. In the scope of this paper, we will implement human-imperceptible attacks through projected gradient descent and patch attacks, both of which will be covered in the Methods section of this report. 
 
 ### Theory: Adversarial Attacks 
 
@@ -44,7 +46,7 @@ Robust training is focused around the idea of minimizing loss based on an upper 
 
 The Fast Gradient Sign Method is one of the methods that we will experiment with using for adversarial robust training. Fast gradient sign method is an adversarial method that utilizes the gradients of a neural network’s loss in order to affect the input image in order to maximize the loss value. Training around this would allow the neural network to account for a seemingly worst case scenario where losses are maximized, allowing the model to better protect against adversarial attacks that are imperceptible to humans. The Fast Gradient Sign Method for adversarial attacks is represented by the equation: 
 
-![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/FGSM.png?raw=true)
+![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/edited_fgsm.png?raw=true)
 *FGSM equation, Tensorflow Documentation*
 
 ### Projected Gradient Descent
@@ -54,13 +56,26 @@ We explore Projected Gradient Descent as a standard for traditional adversarial 
 ![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/PGD.png?raw=true)
 *PGD pseudocode (Wang et al)*
 
-## Results (WORK IN PROGRESS)
+![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/edited_pgd.png?raw=true)
+*PGD equation, Tensorflow Documentation*
+
+## Results
 
 ### Diabetic Retinopathy
 
-For the purpose of recording our results for diabetic retinopathy, we ran the same FGSM and PGD training models with changing epsilon values. In this case, epsilon represents the coefficient of the loss functions as seen in the PGD and FGSM equations. Diabetic retinopathy represented our largest dataset, coming in with 10644 images. As a result, our code had to be optimized to run effectively within the computing resources available to us while also taking into account this large dataset. As a result, this section was run on algorithms with epsilons 0, 2, and 5 with attack epsilons of 0, 5, and 8. Epsilon 0 on the training algorithm indicates that the algorithm does not have robust training while higher epsilons indicate higher levels of robust training. When looking at the attack epsilon, an epsilon of 0 indicates no adversarial attack while higher epsilons indicate stronger attacks. First, we looked into FGSM as it is a faster algorithm than PGD. We were able to gauge the following results from those runs. 
+For the purpose of recording our results for diabetic retinopathy, we ran the same FGSM training model with changing epsilon values. In this case, epsilon represents the coefficient of the loss functions as seen in the FGSM equation. Diabetic retinopathy represented our largest dataset, coming in with 10644 images. As a result, our code had to be optimized to run effectively within the computing resources available to us while also taking into account this large dataset. As a result, this section was run on algorithms with epsilons 0, 5, and 8 with attack epsilons of 0, 2, 5, and 8. Epsilon 0 on the training algorithm indicates that the algorithm does not have robust training while higher epsilons indicate higher levels of robust training. When looking at the attack epsilon, an epsilon of 0 indicates no adversarial attack while higher epsilons indicate stronger attacks. Using FGSM, we were able to gauge the following results from those runs:
+
+![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/dr_results.png?raw=true)
+*FGSM Robust Training Performance on Diabetic Retinopathy Dataset, Senthilvelan & Tjoa*
+
+### Dermatology Skin Patches
+
+After performing training using Fast-FGSM on our dataset, we notice our models that had Epsilon 5 and 8 training epsilons performed relatively consistently against adversarial attacks between 0 to 9 epochs. Alternatively, we notice the training set with epsilon 0 outputted a lower accuracy as the epsilon of the adversarial attacks increased; with our takeaway being of a similar structure to our Diabetic Retinopathy results regarding the effectiveness of robustly trained models on epsilon attacks.  
+
+![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/derm_results.png?raw=true)
+*FGSM Robust Training Performance on Dermatology Dataset, Senthilvelan & Tjoa*
 
 
 ## Conclusion 
 
-From our research, we can see that robust training allows for better performance in deep learning systems in the FGSM. We can see that the robust training allows the model to be better prepared for adversarial attacks and that a more robust algorithm could help handle the cases where ours was unable to detect the adversarial attacks. In our case, we were unable to explore stronger models due to the computing constraints we faced. However, based on our findings, we believe that experimenting with different parameters such as higher training epsilon, training with more epochs, further optimizing the FGSM algorithm, or having access to more training data among other factors may help in further advancing the performance and efficiency of robust training against adversarial attacks in healthcare. Considering the significant ramifications of adversarial attacks being deployed onto sensitive healthcare systems, the value of robust training in these systems is very apparent. 
+From our research, we can see that robust training allows for better performance in deep learning systems in the Fast-FGSM. We can see that the robust training allows the model to be better prepared for adversarial attacks and that a more robust algorithm could help handle the cases where ours was unable to detect the adversarial attacks. In our case, we were unable to explore stronger models due to the computing constraints we faced. However, based on our findings, we believe that experimenting with different parameters such as higher training epsilon, training with more epochs, further optimizing the Fast-FGSM algorithm, using a deeper neural network, or having access to more training data among other factors may help in further advancing the performance and efficiency of robust training against adversarial attacks in healthcare. Considering the significant ramifications of adversarial attacks being deployed onto sensitive healthcare systems, the value of robust training in these systems is very apparent. 
