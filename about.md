@@ -75,6 +75,12 @@ After performing training using Fast-FGSM on our dataset, we notice our models t
 ![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/derm_results.png?raw=true)
 *FGSM Robust Training Performance on Dermatology Dataset, Senthilvelan & Tjoa*
 
+### Chest X-rays
+
+After performing training using Fast-FGSM on our chest x-ray dataset, we notice a more prominent effect of robust training as the standard model (Training Epsilon 0) shows a high accuracy on regular images, which promptly decreases as the adversarial attacks intensify. On the other hand, we notice our most robustly trained model (Training Epsilon 8), seems to perform consistently against the various adversarial attacks, although its initial training accuracy on non-adversarial images did not perform as well as the standard model. Interestingly, we don’t seem to notice a major tradeoff between the robustness of a model and the accuracy compared to less robust models.
+
+![alt text](https://github.com/medicalA15/medicalA15.github.io/blob/gh-pages/img/cxr_results.png?raw=true)
+*FGSM Robust Training Performance on Dermatology Dataset, Senthilvelan & Tjoa*
 
 ## Conclusion 
 
